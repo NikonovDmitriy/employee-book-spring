@@ -5,6 +5,7 @@ import com.skypro.employee.record.EmployeeRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,5 +37,19 @@ public class EmployeeService {
         return employees.values().stream()
                 .mapToInt(Employee::getSalary)
                 .sum();
+    }
+
+
+    public Employee getSalaryMin() {
+        return employees.values().stream()
+                .max(Comparator.comparingInt(Employee::getSalary))
+                .orElseGet(() -> null);
+    }
+
+
+    public Employee getSalaryMax() {
+        return employees.values().stream()
+                .max(Comparator.comparingInt(Employee::getSalary))
+                .orElseGet(() -> null);
     }
 }
