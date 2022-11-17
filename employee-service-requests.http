@@ -1,23 +1,47 @@
-###Получение списка сотрудников
-GET http://localhost:8080/employee
-###Добавление сотрудника
-POST http://localhost:8080/employee
+### All employees
+GET http://localhost:8080/employees
+
+### Add employee
+POST http://localhost:8080/employees
 Content-Type: application/json
 
 {
-  "firstName": "Test",
-  "lastName": "Test",
-  "department": 1,
-  "salary": 1000
+  "firstName" : "Ivan",
+  "lastName" : "Ivanov",
+  "salary" : 23000,
+  "department" : 3
 }
-### Получение суммы зарплат сотрудников
-GET http://localhost:8080/employee/salary/sum
 
-### Получение сотрудника с минимальной зарплатой
-GET http://localhost:8080/employee/salary/min
+### Add second employee
+POST http://localhost:8080/employees
+Content-Type: application/json
 
-### Получение сотрудника с максимальной зарплатой
-GET http://localhost:8080/employee/salary/max
+{
+  "firstName" : "Katya",
+  "lastName" : "Ivanova",
+  "salary" : 30000,
+  "department" : 1
+}
 
-### Получение всех сотрудников, зарплата которых больше средней зарплаты
-GET http://localhost:8080/employee/high-salary
+### Sum of salaries
+GET http://localhost:8080/employees/salaries/sum
+
+### Employee with min salary
+GET http://localhost:8080/employees/min-salary-employee
+
+### Employee with max salary
+GET http://localhost:8080/employees/max-salary-employee
+
+### Employees with salary which more than average
+GET http://localhost:8080/employees/salary-more-average
+
+### Add non-valid employee
+POST http://localhost:8080/employees
+Content-Type: application/json
+
+{
+  "firstName" : "ivan",
+  "lastName" : "Ivanova",
+  "salary" : 30000,
+  "department" : 1
+}
