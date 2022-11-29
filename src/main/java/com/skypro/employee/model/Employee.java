@@ -1,50 +1,66 @@
 package com.skypro.employee.model;
 
+import java.util.Objects;
+
 public class Employee {
-    private static int counter;
-    private final int id;
-    private final String firstName;
-    private final String lastName;
-    private final int department;
-    private final int salary;
 
-    public Employee(String firstName, String lastName, int department, int salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.department = department;
-        this.salary = salary;
+    private final int employeeId;
+    private final String employeeFirstName;
+    private final String employeeLastName;
+    private final int employeeSalary;
+    private final int employeeDepartment;
 
-        this.id = counter++;
+    public Employee(int employeeId, String employeeFirstName, String employeeLastName,
+                    int employeeSalary, int employeeDepartment) {
+        this.employeeId = employeeId;
+        this.employeeFirstName = employeeFirstName;
+        this.employeeLastName = employeeLastName;
+        this.employeeSalary = employeeSalary;
+        this.employeeDepartment = employeeDepartment;
     }
 
-    public int getId() {
-        return id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmployeeFirstName() {
+        return employeeFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEmployeeLastName() {
+        return employeeLastName;
     }
 
-    public int getDepartment() {
-        return department;
+    public int getEmployeeSalary() {
+        return employeeSalary;
     }
 
-    public int getSalary() {
-        return salary;
+    public int getEmployeeDepartment() {
+        return employeeDepartment;
     }
 
     @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", department=" + department +
-                ", salary=" + salary +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (employeeId != employee.employeeId) return false;
+        if (employeeSalary != employee.employeeSalary) return false;
+        if (employeeDepartment != employee.employeeDepartment) return false;
+        if (!Objects.equals(employeeFirstName, employee.employeeFirstName))
+            return false;
+        return Objects.equals(employeeLastName, employee.employeeLastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = employeeId;
+        result = 31 * result + (employeeFirstName != null ? employeeFirstName.hashCode() : 0);
+        result = 31 * result + (employeeLastName != null ? employeeLastName.hashCode() : 0);
+        result = 31 * result + employeeSalary;
+        result = 31 * result + employeeDepartment;
+        return result;
     }
 }
