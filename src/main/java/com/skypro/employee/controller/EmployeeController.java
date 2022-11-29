@@ -1,10 +1,9 @@
 package com.skypro.employee.controller;
 
+import com.skypro.employee.dto.EmployeeRequest;
 import com.skypro.employee.model.Employee;
-import com.skypro.employee.record.EmployeeRequest;
 import com.skypro.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -57,11 +56,5 @@ public class EmployeeController {
     @GetMapping("/salary-more-average")
     public Collection<Employee> getEmployeesWithSalaryMoreAverage() {
         return employeeService.getEmployeesWithSalaryMoreAverage();
-    }
-
-    @ExceptionHandler(Throwable.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handle(IllegalArgumentException e) {
-        return "Employee`s data must be valid";
     }
 }
